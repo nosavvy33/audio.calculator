@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <script>
+        // CONSTANTS
+        const oneSecond = 1;
+        const milliseconds = 1000;
+
+    </script>
+    <script>
+        // UTILS
+        function round_number(options) {
+            const places = 10 ** options.decimal_places;
+            const res = Math.round(options.number * places) / places;
+            return (res)
+        }
+    </script>
+    <script>
+        console.log("hi");
+        function frequencyToPeriod() {
+            var frequency = document.getElementById("frequency").value;
+            var resultSpan = document.getElementById("result");
+            var result = round_number({
+                number: milliseconds / frequency,
+                decimal_places: 3
+            })
+            console.log(result)
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Hi</h1>
+    <div>
+        <h2>Frecuencia a Periodo</h2>
+        <h3>P = 1 / F</h3>
+        <input id="frequency" type="number" />
+        <button onclick="frequencyToPeriod()">Calculate</button>
+        <span id="result"></span>
+    </div>
+
+</body>
+
+</html>
