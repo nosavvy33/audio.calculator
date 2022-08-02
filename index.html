@@ -5,7 +5,8 @@
         // CONSTANTS
         const oneSecond = 1;
         const milliseconds = 1000;
-
+        const soundVelocityAtZero = 331;
+        const soundVelocityAtFifteen = 340;
     </script>
     <script>
         // UTILS
@@ -16,27 +17,105 @@
         }
     </script>
     <script>
-        console.log("hi");
         function frequencyToPeriod() {
             var frequency = document.getElementById("frequency").value;
-            var resultSpan = document.getElementById("result");
+            var resultSpan = document.getElementById("resultFrequency");
             var result = round_number({
                 number: milliseconds / frequency,
                 decimal_places: 3
             })
-            console.log(result)
+            resultSpan.innerHTML = result;
+        }
+
+        function periodToFrequency() {
+            var period = document.getElementById("period").value;
+            var resultSpan = document.getElementById("resultPeriod");
+            var result = round_number({
+                number: milliseconds / period,
+                decimal_places: 3
+            })
+            resultSpan.innerHTML = result;
+        }
+
+        function calculateVelocityOnTemperature() {
+            var temperature = document.getElementById("temperature").value;
+            var resultSpan = document.getElementById("resultVelocity");
+            var result = soundVelocityAtZero + (0.6 * temperature);
+            resultSpan.innerHTML = result;
+        }
+
+        function calculateWaveLength() {
+            var waveFrequency = document.getElementById("waveFrequency").value;
+            var resultSpan = document.getElementById("resultWaveLength");
+            var result = round_number({
+                number: soundVelocityAtFifteen / waveFrequency,
+                decimal_places: 3
+            })
+            resultSpan.innerHTML = result;
+        }
+
+        function calculateFrequencyOnWavelength() {
+            var waveLength = document.getElementById("waveLength").value;
+            var resultSpan = document.getElementById("resultFrequencyFromWavelength");
+            var result = round_number({
+                number: soundVelocityAtFifteen / waveLength,
+                decimal_places: 3
+            })
+            resultSpan.innerHTML = result;
         }
     </script>
 </head>
 
 <body>
-    <h1>Hi</h1>
+    <h1>Calculadora de ecuaciones: EL SONIDO</h1>
+    <h2>by nosavvy33</h2>
+    <hr>
     <div>
         <h2>Frecuencia a Periodo</h2>
-        <h3>P = 1 / F</h3>
-        <input id="frequency" type="number" />
-        <button onclick="frequencyToPeriod()">Calculate</button>
-        <span id="result"></span>
+        <h3>P = 1s / F</h3>
+        <span>
+            P = 1000 ms / <input id="frequency" type="number" /> = <span id="resultFrequency"></span> ms
+            <button onclick="frequencyToPeriod()">Calculate</button>
+        </span>
+    </div>
+    <hr>
+    <div>
+        <h2>Periodo a Frecuencia</h2>
+        <h3>F = 1s / P</h3>
+        <span>
+            F = 1000 ms / <input id="period" type="number" /> = <span id="resultPeriod"></span> hz
+            <button onclick="periodToFrequency()">Calculate</button>
+        </span>
+    </div>
+    <hr>
+    <div>
+        <h2>Velocidad de sonido en temperatura</h2>
+        <h3>Vs = 331 m/s + (0.6 * T)</h3>
+        <span>
+            Vs = 331 m/s + ( 0.6 * <input id="temperature" type="number" /> °C ) = <span id="resultVelocity"></span> °C
+            <button onclick="calculateVelocityOnTemperature()">Calculate</button>
+        </span>
+    </div>
+    <hr>
+    <div>
+        <h2>Frecuencia a Longitud de Onda</h2>
+        <h3>λ = Vs / F</h3>
+        <span>
+            λ = 340 m/s / <input id="waveFrequency" type="number" /> hz = <span id="resultWaveLength"></span>
+            mts/ciclo
+            <button onclick="calculateWaveLength()">Calculate</button>
+        </span>
+    </div>
+    <hr>
+    <div>
+        <h2>Longitud a Frecuencia</h2>
+        <h3>F = Vs / λ</h3>
+        <span>
+            F = 340 m/s / <input id="waveLength" type="number" /> mts/ciclo = <span
+                id="resultFrequencyFromWavelength"></span>
+            hz
+            <button onclick="calculateFrequencyOnWavelength()">Calculate</button>
+        </span>
     </div>
 
 </body>
