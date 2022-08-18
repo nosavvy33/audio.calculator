@@ -64,6 +64,12 @@
             resultSpan.innerHTML = result;
         }
     </script>
+    <style>
+        input {
+            height: 2em;
+            font-size: 3.5em;
+        }
+    </style>
 </head>
 
 <body>
@@ -74,8 +80,8 @@
         <h2>Frecuencia a Periodo</h2>
         <h3>P = 1s / F</h3>
         <span>
-            P = 1000 ms / <input id="frequency" type="number" /> = <span id="resultFrequency"></span> ms
-            <button onclick="frequencyToPeriod()">Calculate</button>
+            P = 1000 ms / <input id="frequency" type="number" oninput="frequencyToPeriod()" /> hz = <span
+                id="resultFrequency"></span> ms
         </span>
     </div>
     <hr>
@@ -83,8 +89,8 @@
         <h2>Periodo a Frecuencia</h2>
         <h3>F = 1s / P</h3>
         <span>
-            F = 1000 ms / <input id="period" type="number" /> = <span id="resultPeriod"></span> hz
-            <button onclick="periodToFrequency()">Calculate</button>
+            F = 1000 ms / <input id="period" type="number" oninput="periodToFrequency()" /> ms = <span
+                id="resultPeriod"></span> hz
         </span>
     </div>
     <hr>
@@ -92,8 +98,8 @@
         <h2>Velocidad de sonido en temperatura</h2>
         <h3>Vs = 331 m/s + (0.6 * T)</h3>
         <span>
-            Vs = 331 m/s + ( 0.6 * <input id="temperature" type="number" /> °C ) = <span id="resultVelocity"></span> °C
-            <button onclick="calculateVelocityOnTemperature()">Calculate</button>
+            Vs = 331 m/s + ( 0.6 * <input id="temperature" type="number" oninput="calculateVelocityOnTemperature()" />
+            °C ) = <span id="resultVelocity"></span> °C
         </span>
     </div>
     <hr>
@@ -101,9 +107,9 @@
         <h2>Frecuencia a Longitud de Onda</h2>
         <h3>λ = Vs / F</h3>
         <span>
-            λ = 340 m/s / <input id="waveFrequency" type="number" /> hz = <span id="resultWaveLength"></span>
+            λ = 340 m/s / <input id="waveFrequency" type="number" oninput="calculateWaveLength()" /> hz = <span
+                id="resultWaveLength"></span>
             mts/ciclo
-            <button onclick="calculateWaveLength()">Calculate</button>
         </span>
     </div>
     <hr>
@@ -111,12 +117,26 @@
         <h2>Longitud a Frecuencia</h2>
         <h3>F = Vs / λ</h3>
         <span>
+            F = 340 m/s / <input id="waveLength" type="number" oninput="calculateFrequencyOnWavelength()" /> mts/ciclo
+            = <span id="resultFrequencyFromWavelength"></span>
+            hz
+        </span>
+    </div>
+    <hr>
+    <!-- <div>
+        <h2>Calcular diferencial de fase entre dos ondas de misma frecuencia</h2>
+        <h3>primera incógnita milisegundos de delay o desfase a grados</h3>
+        <h3>segunda incógnita centígrados o desfase a milisegundos</h3>
+        <span>input: frecuencia en cuestión, delay en ms o grados °</span>
+        <span>F = frecuencia en cuestión</span>
+        <span>dibujar un ciclo completo de la onda sinoidal completa x2</span>
+        <span>
             F = 340 m/s / <input id="waveLength" type="number" /> mts/ciclo = <span
                 id="resultFrequencyFromWavelength"></span>
             hz
             <button onclick="calculateFrequencyOnWavelength()">Calculate</button>
         </span>
-    </div>
+    </div> -->
 
 </body>
 
