@@ -63,6 +63,35 @@
             })
             resultSpan.innerHTML = result;
         }
+
+        function calculateDelayInMSGivenDegreesAndFrequency() {
+            // f(x,y) = (1000 ms / x ) / y
+            // where x = freq
+            // and y = degrees
+            var freq = getDom("delay_frequency").value; //hz
+            var fullFrequencyPeriod = round_number({
+                number: milliseconds / freq,
+                decimal_places: 3
+            })
+            const fullCircle = 360
+            var degrees = getDom("delay_degree").value; // given
+            getDom("delayOnFrequencyAndDegrees").innerHTML = (fullFrequencyPeriod / fullCircle) * degrees;
+        }
+
+        function xy() {
+            var freq = 100; //hz
+            var fullFrequencyPeriod = round_number({
+                number: milliseconds / freq,
+                decimal_places: 3
+            })
+            var delay = 5; //ms
+            var minimum = fullFrequencyPeriod / 360;
+            var result = delay * minimum
+        }
+
+        function getDom(dom) {
+            return document.getElementById(dom);
+        }
     </script>
     <style>
         input {
@@ -123,6 +152,43 @@
         </span>
     </div>
     <hr>
+    <hr>
+    <div>
+        <h2>Frecuencia a delay dado frecuencia y grados de desfase</h2>
+        <h3>F(x,y) = (Periodo(x) / 360°) * Y° grados</h3>
+        <h3>F(x,y) = ((1000 ms / X hz) / 360*) * Y° grados</h3>
+        <h4>
+            x = frecuencia; y = grados
+        </h4>
+        <span>
+            F(x,y) = <br>
+            X = <input id="delay_frequency" type="number" /> hz <br>
+            Y = <input id="delay_degree" type="number" value="360" /> <br>
+            = <span id="delayOnFrequencyAndDegrees"></span>
+            ms
+            <button onclick="calculateDelayInMSGivenDegreesAndFrequency()">Calculate</button>
+        </span>
+    </div>
+    <hr>
+    <hr>
+    <!-- <div>
+        <h2>Frecuencia a grados de desfase dado frecuencia y delay</h2>
+        <h3>F(x,y) = (Periodo(x) / 360°) * Y° grados</h3>
+        <h3>F(x,y) = ((1000 ms / X hz) / 360*) * Y° grados</h3>
+        <h4>
+            x = frecuencia; y = delay
+        </h4>
+        <span>
+            F(x,y) = <br>
+            X = <input id="degrees_frequency" type="number" /> hz <br>
+            Y = <input id="degrees_degree" type="number" value="360" /> <br>
+            = <span id="degreesOnFrequencyAndDelay"></span>
+            ms
+            <button onclick="calculateDegreesGivenDelayAndFrequency()">Calculate</button>
+        </span>
+    </div> -->
+    <hr>
+
     <!-- <div>
         <h2>Calcular diferencial de fase entre dos ondas de misma frecuencia</h2>
         <h3>primera incógnita milisegundos de delay o desfase a grados</h3>
